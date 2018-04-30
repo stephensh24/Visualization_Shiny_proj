@@ -251,5 +251,27 @@ points(tanz$longitude, tanz$latitude, col = "blue", cex = .6)
 
 
 summary(tanz$latitude)
+summary(tanz$longitude)
 
-?plot_ly()
+map <- leaflet(width = 600, height = 400)
+map <- addTiles(map)
+map <- setView(map, lng = 35.09,
+               lat = -5.801,
+               zoom = 7)
+map
+
+
+
+Geo=gvisGeoChart(tanz, locationvar="Country", 
+                 colorvar="Profit",
+                 options=list(projection="kavrayskiy-vii"))
+plot(Geo)
+install.packages("leaflet.extras")
+library(leaflet.extras)
+head(tanz)
+
+tanz_region = tanz %>% group_by(region, status_group)
+
+leaflet(tanz_region) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%
+  addWebGLHeatmap(lng=~longitude, lat=~latitude,size=2,units='px')

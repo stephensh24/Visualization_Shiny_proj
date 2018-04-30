@@ -1,9 +1,9 @@
 shinyUI(dashboardPage(
+  skin = "black",
   dashboardHeader(title = "Tanzania Water Pumps"),
   dashboardSidebar(
-    
-    sidebarUserPanel("NYC DSA",
-                     image = "https://yt3.ggpht.com/-04uuTMHfDz4/AAAAAAAAAAI/AAAAAAAAAAA/Kjeupp-eNNg/s100-c-k-no-rj-c0xffffff/photo.jpg"),
+    sidebarUserPanel("Stephen Shafer",
+                     image = "https://media.licdn.com/dms/image/C5603AQEKSve45-fUnw/profile-displayphoto-shrink_200_200/0?e=1530316800&v=beta&t=bzwu85cd5Z5wJc9cB_JL1bav-oZAvVWzd12uNifxyU4"),
     sidebarMenu(
       menuItem("Water Pump Funcionality", tabName = "bar", icon = icon("bar-chart-o")),
       menuItem("Map", tabName = "map", icon = icon("map")),
@@ -23,11 +23,8 @@ shinyUI(dashboardPage(
               fluidRow(box(plotlyOutput("pump_plot"), width = 12))
               ),
       tabItem(tabName = "map",
-              fluidRow(infoBoxOutput("maxBox"),
-                       infoBoxOutput("minBox"),
-                       infoBoxOutput("avgBox")),
-              fluidRow(box(htmlOutput("map"), height = 300),
-                       box(htmlOutput("bar"), height = 300))),
+              fluidRow(box(leafletOutput("map"), width = 8))
+              ),
       tabItem(tabName = "data",
               fluidRow(box(DT::dataTableOutput("table"), width = 12)))
     )

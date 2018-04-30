@@ -7,15 +7,20 @@ library(shinydashboard)
 library(plotly)
 library(googleVis)
 library(DT)
+library(leaflet.extras)
+library(leaflet)
 
-tanz = read.csv("Pipe_ind.csv")
-Pipe_labels = read.csv("Pipe_labels.csv")
+tanz = read.csv("C:/Users/Stephen/Desktop/git_proj/Visualization_Shiny_proj/Pipe_ind.csv")
+Pipe_labels = read.csv("C:/Users/Stephen/Desktop/git_proj/Visualization_Shiny_proj/Pipe_labels.csv")
 tanz = inner_join(tanz,Pipe_labels, by = "id")
 
 
 #dataset for gps_height histo graph. excludes all 0 values
 tanz_histo = tanz %>% filter(gps_height != 0)
 nrow(tanz_histo)
+
+#map data
+tanz_region = tanz %>% group_by(region, status_group)
 
 
 # Converting Longitude into Regional mean (There were 1812 total. 807 in Mwanza, 1005 in Shinyanga)
