@@ -162,7 +162,7 @@ tanze_perc_graph %>% ggplot(aes(x = extraction_type, y = perc, fill = status_gro
 
 
 #Density of functional pumps based on gps_height
-tanz %>% ggplot(aes(x= gps_height, fill = status_group)) + geom_histogram(bins = 30, position = "dodge")
+tanz %>% ggplot(aes(x= gps_height, fill = status_group)) + geom_histogram(bins = 30)
 
 
 
@@ -252,3 +252,4 @@ points(tanz$longitude, tanz$latitude, col = "blue", cex = .6)
 
 summary(tanz$latitude)
 
+?plot_ly()

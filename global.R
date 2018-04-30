@@ -13,6 +13,11 @@ Pipe_labels = read.csv("Pipe_labels.csv")
 tanz = inner_join(tanz,Pipe_labels, by = "id")
 
 
+#dataset for gps_height histo graph. excludes all 0 values
+tanz_histo = tanz %>% filter(gps_height != 0)
+nrow(tanz_histo)
+
+
 # Converting Longitude into Regional mean (There were 1812 total. 807 in Mwanza, 1005 in Shinyanga)
 tanz = tanz %>% mutate(longitude = ifelse(longitude == 0 & region == "Mwanza",33.09156, longitude))
 tanz = tanz %>% mutate(longitude = ifelse(longitude == 0 & region == "Shinyanga",33.24012, longitude))
@@ -47,7 +52,7 @@ tanz = tanz %>% select(-payment_type, -waterpoint_type_group, -extraction_type_g
                 rename(source = source_type, extraction_type = extraction_type_class)
 
 # col names for selection dropdown --------------------
-tanz_cols = tanz %>% select(region, basin, extraction_type, water_quality, waterpoint_type, payment)
+tanz_cols = tanz %>% select(region, basin, extraction_type, water_quality, waterpoint_type, payment, gps_height)
 choice <- colnames(tanz_cols)
 
 #selected rows --------------------------------

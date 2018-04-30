@@ -20,7 +20,7 @@ shinyUI(dashboardPage(
     ),
     tabItems(
       tabItem(tabName = "bar",
-              fluidRow(box(plotOutput("pump_plot"), width = 12))
+              fluidRow(box(plotlyOutput("pump_plot"), width = 12))
               ),
       tabItem(tabName = "map",
               fluidRow(infoBoxOutput("maxBox"),
@@ -33,3 +33,4 @@ shinyUI(dashboardPage(
     )
   )
 ))
+
