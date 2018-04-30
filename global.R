@@ -5,6 +5,8 @@ library(tidyr)
 library(ggplot2)
 library(shinydashboard)
 library(plotly)
+library(googleVis)
+library(DT)
 
 tanz = read.csv("Pipe_ind.csv")
 Pipe_labels = read.csv("Pipe_labels.csv")

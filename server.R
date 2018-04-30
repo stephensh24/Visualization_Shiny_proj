@@ -5,7 +5,7 @@ shinyServer(function(input, output){
       tanz %>% group_by(basin,status_group) %>% summarise(count = n()) %>%
         group_by(basin) %>% mutate(perc = count/sum(count)) %>% 
         ggplot(aes(x = basin, y = perc, fill = status_group)) +
-        geom_bar(stat="identity","position" = "dodge")+
+        geom_bar(stat="identity")+
         ggtitle("Basin Pump Functionality Dist") +
         xlab("Location") + ylab("Percent of Pump Function") +
         theme(plot.title = element_text(hjust = 0.5))
@@ -21,7 +21,7 @@ shinyServer(function(input, output){
       tanz %>% group_by(extraction_type,status_group) %>% summarise(count = n()) %>%
         group_by(extraction_type) %>% mutate(perc = count/sum(count)) %>% 
         ggplot(aes(x = extraction_type, y = perc, fill = status_group)) +
-        geom_bar(stat="identity","position" = "dodge")+
+        geom_bar(stat="identity")+
         ggtitle("Extraction Type Pump Functionality Dist") +
         xlab("Extraction Type") + ylab("Percent of Pump Function") +
         theme(plot.title = element_text(hjust = 0.5))
@@ -29,7 +29,7 @@ shinyServer(function(input, output){
       tanz %>% group_by(water_quality,status_group) %>% summarise(count = n()) %>%
         group_by(water_quality) %>% mutate(perc = count/sum(count)) %>% 
         ggplot(aes(x = water_quality, y = perc, fill = status_group)) +
-        geom_bar(stat="identity","position" = "dodge")+
+        geom_bar(stat="identity")+
         ggtitle("Water Quality Pump Functionality Dist") +
         xlab("Water Quality") + ylab("Percent of Pump Function") +
         theme(plot.title = element_text(hjust = 0.5))
@@ -37,7 +37,7 @@ shinyServer(function(input, output){
       tanz %>% group_by(waterpoint_type,status_group) %>% summarise(count = n()) %>%
         group_by(waterpoint_type) %>% mutate(perc = count/sum(count)) %>% 
         ggplot(aes(x = waterpoint_type, y = perc, fill = status_group)) +
-        geom_bar(stat="identity","position" = "dodge")+
+        geom_bar(stat="identity")+
         ggtitle("Waterpoint Pump Functionality Dist") +
         xlab("Waterpoint Type") + ylab("Percent of Pump Function") +
         theme(plot.title = element_text(hjust = 0.5))
@@ -45,7 +45,7 @@ shinyServer(function(input, output){
       tanz %>% group_by(payment,status_group) %>% summarise(count = n()) %>%
         group_by(payment) %>% mutate(perc = count/sum(count)) %>% 
         ggplot(aes(x = payment, y = perc, fill = status_group)) +
-        geom_bar(stat="identity","position" = "dodge")+
+        geom_bar(stat="identity")+
         ggtitle("Waterpoint Pump Functionality Dist") +
         xlab("Payment Type") + ylab("Percent of Pump Function") +
         theme(plot.title = element_text(hjust = 0.5))
