@@ -1,0 +1,13 @@
+name: Tanzania_Water_Pumps
+title: Tanzania_Water_Pumps
+username:
+account: stephensh
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 334888
+bundleId: 1349374
+url: https://stephensh.shinyapps.io/Tanzania_Water_Pumps/
+when: 1525185273.79124
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Pipe_dep.csv|Shiny_Proj1.R

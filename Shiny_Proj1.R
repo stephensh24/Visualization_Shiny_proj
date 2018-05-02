@@ -272,6 +272,22 @@ head(tanz)
 
 tanz_region = tanz %>% group_by(region, status_group)
 
-leaflet(tanz_region) %>%
-  addProviderTiles(providers$CartoDB.DarkMatter) %>%
-  addWebGLHeatmap(lng=~longitude, lat=~latitude,size=2,units='px')
+tanz_region %>% leaflet() %>% 
+  addProviderTiles("Stamen.Watercolor") %>% 
+  addMarkers(lat = latitude, 
+             lng = longitude,
+             clusterOptions = markerClusterOptions(),
+             popup = as.character(region))
+
+map
+
+colnames(tanz_region)
+
+tanz %>% filter(population > 0 & population < 1000) %>% group_by(population,status_group) %>% summarise(count = n()) %>%
+  group_by(population) %>% mutate(perc = count/sum(count)) %>% 
+  plot_ly(x = ~population, y = ~perc, color = ~status_group, type='bar') %>% 
+  layout(barmode = 'stack', title = "Functionality by Extraction Type")
+
+tanz_histo %>% filter(population > 0 & population < 1000) %>% plot_ly(alpha = 0.6) %>%
+  add_histogram(x = ~population, color = ~status_group) %>%
+  layout(barmode = "overlay", title = "Functionality by GPS Height")

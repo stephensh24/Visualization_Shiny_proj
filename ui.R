@@ -1,7 +1,10 @@
+
+
 shinyUI(dashboardPage(
   skin = "black",
-  dashboardHeader(title = "Tanzania Water Pumps"),
+  dashboardHeader(title = "Tanzania Pumps"),
   dashboardSidebar(
+    
     sidebarUserPanel("Stephen Shafer",
                      image = "https://media.licdn.com/dms/image/C5603AQEKSve45-fUnw/profile-displayphoto-shrink_200_200/0?e=1530316800&v=beta&t=bzwu85cd5Z5wJc9cB_JL1bav-oZAvVWzd12uNifxyU4"),
     sidebarMenu(
@@ -12,7 +15,7 @@ shinyUI(dashboardPage(
     selectizeInput("selected",
                    "Select Item to Display",
                    choice)
-
+    
   ),
   dashboardBody(
     tags$head(
@@ -21,10 +24,10 @@ shinyUI(dashboardPage(
     tabItems(
       tabItem(tabName = "bar",
               fluidRow(box(plotlyOutput("pump_plot"), width = 12))
-              ),
+      ),
       tabItem(tabName = "map",
-              fluidRow(box(leafletOutput("map"), width = 8))
-              ),
+              fluidRow(box(leafletOutput("map"), width = 10))
+      ),
       tabItem(tabName = "data",
               fluidRow(box(DT::dataTableOutput("table"), width = 12)))
     )

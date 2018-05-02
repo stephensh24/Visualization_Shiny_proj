@@ -1,7 +1,7 @@
 library(shiny)
 library(data.table)
 library(dplyr)
-library(tidyr)
+library(shinythemes)
 library(ggplot2)
 library(shinydashboard)
 library(plotly)
@@ -9,18 +9,21 @@ library(googleVis)
 library(DT)
 library(leaflet.extras)
 library(leaflet)
+library(devtools)
 
-tanz = read.csv("C:/Users/Stephen/Desktop/git_proj/Visualization_Shiny_proj/Pipe_ind.csv")
-Pipe_labels = read.csv("C:/Users/Stephen/Desktop/git_proj/Visualization_Shiny_proj/Pipe_labels.csv")
+tanz = read.csv("./Pipe_ind.csv")
+Pipe_labels = read.csv("./Pipe_labels.csv")
 tanz = inner_join(tanz,Pipe_labels, by = "id")
 
 
 #dataset for gps_height histo graph. excludes all 0 values
 tanz_histo = tanz %>% filter(gps_height != 0)
-nrow(tanz_histo)
+
+#construction year
+tanzconst = tanz %>% filter(construction_year > 0)
 
 #map data
-tanz_region = tanz %>% group_by(region, status_group)
+tanz_region = tanz %>% filter(longitude > 0, latitude < -1) %>% group_by(region, status_group)
 
 
 # Converting Longitude into Regional mean (There were 1812 total. 807 in Mwanza, 1005 in Shinyanga)
@@ -57,7 +60,8 @@ tanz = tanz %>% select(-payment_type, -waterpoint_type_group, -extraction_type_g
                 rename(source = source_type, extraction_type = extraction_type_class)
 
 # col names for selection dropdown --------------------
-tanz_cols = tanz %>% select(region, basin, extraction_type, water_quality, waterpoint_type, payment, gps_height)
+tanz_cols = tanz %>% select(region, basin, extraction_type, water_quality, waterpoint_type, 
+                            payment, construction_year,gps_height)
 choice <- colnames(tanz_cols)
 
 #selected rows --------------------------------
@@ -65,3 +69,11 @@ tanz_sel = tanz %>% select(region, status_group, gps_height, basin, extraction_t
                            water_quality, quantity, waterpoint_type, construction_year, longitude, latitude)
 
 
+
+#margin for pltoly
+m <- list(
+  l = 60,
+  r = 60,
+  b = 100,
+  t = 100,
+  pad = 4)
