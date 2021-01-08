@@ -5,3 +5,5 @@ And that's a good thing.  However in many parts of the world, like the east Afri
 
 Hand-driven and gravity fed pumps are still a main source of potable water in Tanzania and the maintenance of these pumps is an ongoing issue. 
 Because many communities either don't have the funds or the knowledge to maintain these pumps/wells, they're constantly breaking or becoming polluted. This leads to the question, how can we use machine learning to help mitigate this issue?
+
+https://nycdatascience.com/blog/student-works/analyzing-tanzania-water-pump-maintenance-needs/
